@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Documents</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Employee Documents</h1>
+
+    <table border="1" width="100%" id="documentsTable">
+        <thead>
+            <tr>
+                <th>Document ID</th>
+                <th>Employee ID</th>
+                <th>Document Type</th>
+                <th>File Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+
+    <script>
+        fetch('https://htoqb5qddk.execute-api.ap-south-1.amazonaws.com/dev/files')
+        .then(response => response.json())
+        .then(data => {
+
+            const tableBody = document.getElementById("tableBody");
+
+            data.forEach(doc => {
+
+                let row = `
+                    <tr>
+                        <td>${doc.document_id}</td>
+                        <td>${doc.employee_id}</td>
+                        <td>${doc.document_type}</td>
+                        <td>${doc.file_name}</td>
+                        <td>
+                            <a href="https://emp-doc-vault-1.s3.ap-south-1.amazonaws.com/${doc.s3_key}" target="_blank">
+                                View PDF
+                            </a>
+                        </td>
+                    </tr>
+                `;
+
+                tableBody.innerHTML += row;
+            });
+
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Failed to load documents");
+        });
+    </script>
+
+</body>
+</html>
