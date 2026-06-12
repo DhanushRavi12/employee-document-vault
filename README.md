@@ -1,16 +1,35 @@
 # Employee Document Vault
 
-## AWS Services
+## Overview
+A secure document management system for employees.
 
-- S3
-- DynamoDB
-- Lambda
-- API Gateway
-- Cognito
-- IAM
+## AWS Services Used
+- Amazon S3
+- Amazon DynamoDB
+- Amazon Cognito
+- AWS Lambda
+- Amazon API Gateway
+- AWS IAM
 
 ## Features
-
-- View Documents
 - Upload Documents
+- View Documents
 - Delete Documents
+- Role Based Access Control
+
+## API Endpoints
+
+GET /files
+
+POST /upload
+
+DELETE /files/{id}
+
+## CI/CD
+GitHub + Jenkins Pipeline
+
+## Architecture
+(Insert architecture screenshot)
+
+## Screenshots
+(Insert screenshots)
